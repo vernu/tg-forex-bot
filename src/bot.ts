@@ -9,6 +9,10 @@ import { logToDb, logToTgGroup } from './utils/logUtils'
 
 const bot = new Telegraf(process.env.BOT_TOKEN ?? '')
 
+
+if (process.env.ENVIRONMENT === 'prod') {
+  bot.telegram.setWebhook(`${process.env.WEBHOOK_URL}/bot${process.env.BOT_TOKEN}`)
+}
 bot.launch()
 
 // TODO: remove this
