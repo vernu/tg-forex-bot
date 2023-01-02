@@ -30,9 +30,13 @@ bot.use(async (ctx, next) => {
     updatetype: ctx.updateType,
   }
 
-
-  await logToTgGroup(ctx, logContent)
-  await logToDb(ctx, logContent)
+  try {
+    await logToTgGroup(ctx, logContent)
+    await logToDb(ctx, logContent)
+  }
+  catch (e) {
+    console.log(e)
+  }
 
   next()
 })
