@@ -19,7 +19,7 @@ export const logToDb = async (ctx: Context, logContent: any) => {
         await prismaClient.log.create({
             data: {
                 userId: user?.id,
-                content: JSON.parse(logContent),
+                content: JSON.parse(JSON.stringify(logContent)),
             },
         })
     }
