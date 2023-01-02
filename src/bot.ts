@@ -26,6 +26,7 @@ bot.use(async (ctx, next) => {
 
   const logContent = {
     trigger: 'BOT_USE',
+    env: process.env.ENVIRONMENT,
     update: ctx.update,
     updatetype: ctx.updateType,
   }
