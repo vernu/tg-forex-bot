@@ -37,6 +37,7 @@ export const mainHandler = (bot: Telegraf) => {
         ctx.reply(`welcome ${!isNewUser ? 'back ' : ''} ${user.name}(${user.tgUsername})`)
     })
     bot.hears(['all', 'All', 'ALL'], async (ctx) => {
+        ctx.telegram.sendChatAction(ctx.chat.id, 'typing')
         const currencyPairs = DEFAULT_CURRENCY_PAIRS
         const result = []
 
