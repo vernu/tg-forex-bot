@@ -1,8 +1,8 @@
-export interface ICurrencyPair {
+export interface CurrencyPair {
   base: string
   quote: string
 }
 
-export interface IRateBasic extends ICurrencyPair {
+export interface RateBasic extends CurrencyPair {
   rate: number
 }

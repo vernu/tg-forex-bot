@@ -1,4 +1,4 @@
-import { ICurrencyPair } from './types'
+import { CurrencyPair } from './types'
 
 export const SUPPORTED_CURRENCIES = [
   'ETB',
@@ -17,7 +17,7 @@ export const SUPPORTED_CURRENCIES = [
   'JPY',
 ]
 
-export const DEFAULT_CURRENCY_PAIRS: ICurrencyPair[] = [
+export const DEFAULT_CURRENCY_PAIRS: CurrencyPair[] = [
   { base: 'BTC', quote: 'USD' },
   { base: 'ETH', quote: 'USD' },
 

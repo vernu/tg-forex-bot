@@ -1,7 +1,7 @@
 import axios from 'axios'
 import prismaClient from '../../prisma/prismaClient'
 import { SUPPORTED_CURRENCIES } from '../constants'
-import { ICurrencyPair, IRateBasic } from '../types'
+import { CurrencyPair, RateBasic } from '../types'
 
 
 export const fetchLatestRates = async (): Promise<void> => {
@@ -25,7 +25,7 @@ export const fetchLatestRates = async (): Promise<void> => {
 export const getLatestRate = async ({
   base,
   quote,
-}: ICurrencyPair): Promise<IRateBasic | null> => {
+}: CurrencyPair): Promise<RateBasic | null> => {
   if (base == 'USD') {
     let result = await prismaClient.rate.findFirst({
       where: {
