@@ -2,7 +2,7 @@ import { Telegraf } from 'telegraf'
 import { fetchLatestRates } from '../utils/currencyUtils'
 
 export const adminHandler = (bot: Telegraf) => {
-    bot.hears('fetch', async (ctx) => {
+    bot.command('fetch', async (ctx) => {
         // TODO: check if user is admin
         await fetchLatestRates()
         ctx.reply('fetching...')

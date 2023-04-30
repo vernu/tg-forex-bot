@@ -35,8 +35,18 @@ export const mainHandler = (bot: Telegraf) => {
         }
 
         ctx.reply(`welcome ${!isNewUser ? 'back ' : ''} ${user.name}(${user.tgUsername})`)
+        let msg = ''
+        msg += 'You can use the following commands:\n'
+        msg += '/all get all rates\n'
+        if(user.role === 'admin') {
+            msg += '/fetch fetch latest rate (for admins only)\n'
+        }
+        msg += '/subscribe\n'
+        msg += '/unsubscribe\n'
+        
+        ctx.reply(msg)
     })
-    bot.hears(['all', 'All', 'ALL'], async (ctx) => {
+    bot.command('all', async (ctx) => {
         ctx.telegram.sendChatAction(ctx.chat.id, 'typing')
         const currencyPairs = DEFAULT_CURRENCY_PAIRS
         const result = []
