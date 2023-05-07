@@ -7,7 +7,7 @@
     "start": "ts-node src/bot.ts",
     "dev": "nodemon src/bot.ts",
     "build": "rm -rf ./dist && tsc --project .",
-    "start:prod": "npm run build && node ./dist/src/bot",
+    "start:prod": "pnpm build && node ./dist/src/bot",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "vernu",
