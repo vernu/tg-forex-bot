@@ -1,8 +1,7 @@
 import axios from 'axios'
 import prismaClient from '../../prisma/prismaClient'
-import { SUPPORTED_CURRENCIES } from '../constants'
+import { DEFAULT_CURRENCY_PAIRS, SUPPORTED_CURRENCIES } from '../constants'
 import { CurrencyPair, RateBasic } from '../types'
-
 
 export const fetchLatestRates = async (): Promise<void> => {
   const res = await axios.get(
@@ -73,4 +72,27 @@ export const getLatestRate = async ({
   }
 
   return null
+}
+
+export const getAllRatesResponseHTML = async (): Promise<string> => {
+  const currencyPairs = DEFAULT_CURRENCY_PAIRS
+  const result = []
+
+  for (const pair of currencyPairs) {
+    const rate = await getLatestRate(pair)
+    rate && result.push(rate)
+  }
+
+  let dateStr = new Date().toLocaleString('en-US', {
+    timeZone: 'Africa/Addis_Ababa',
+  })
+  dateStr = dateStr.split(',')[0].trim()
+  let response = `Latest Rates - ${dateStr} \n\n`
+
+  for (const [i, val] of result.entries()) {
+    if ([2, 4, 8].includes(i)) response += '\n'
+    response += `${val.base}/${val.quote} ${val.rate.toLocaleString('en-US')}\n`
+  }
+
+  return response
 }
