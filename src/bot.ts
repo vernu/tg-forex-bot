@@ -48,7 +48,7 @@ mainHandler(bot)
 subscriptionHandler(bot)
 
 cron.schedule(
-  '0 9 9 * * *',
+  '0 0 6 * * *',
   async () => {
     const subscriptions = await prismaClient.subscription.findMany({
       where: {},
